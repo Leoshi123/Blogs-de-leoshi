@@ -1,11 +1,31 @@
 import React, { useState } from 'react';
-import { uploadImage } from '../../lib/cloudinary';
+import { supabase } from '../../lib/supabase'; // Import Supabase client
 
 const PostForm = ({ post, onSubmit, onCancel }) => {
   const [title, setTitle] = useState(post ? post.title : '');
   const [content, setContent] = useState(post ? post.content : '');
   const [image, setImage] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
+
+  // New function to upload image to Supabase Storage
+  const uploadImageToSupabase = async (file) => {
+    const fileName = `${Date.now()}-${file.name}`;
+    const { data, error } = await supabase.storage
+      .from('images') // Make sure you have a 'images' bucket in your Supabase project
+      .upload(fileName, file);
+
+    if (error) {
+      console.error('Error uploading image:', error);
+      throw error;
+    }
+
+    // Get public URL for the uploaded image
+    const { data: { publicUrl } } = supabase.storage
+      .from('images')
+      .getPublicUrl(fileName);
+
+    return publicUrl;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,7 +34,8 @@ const PostForm = ({ post, onSubmit, onCancel }) => {
     if (image) {
       setIsUploading(true);
       try {
-        featured_image = await uploadImage(image);
+        // Use the new Supabase upload function
+        featured_image = await uploadImageToSupabase(image);
       } catch (error) {
         alert('Error al subir la imagen. Por favor, inténtalo de nuevo.');
         setIsUploading(false);
