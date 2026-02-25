@@ -2,8 +2,9 @@ services:
   - type: web
     name: leoshi-blogges
     runtime: static
-    buildCommand: cd leoshi-blogges && npm install && npm run build
-    staticPublishPath: leoshi-blogges/dist
+    rootDir: leoshi-blogges # Set the root directory
+    buildCommand: npm install && npm run build # Simplified build command
+    staticPublishPath: dist # Correct publish path
     envVars:
       - key: VITE_SUPABASE_URL
         sync: false
