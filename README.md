@@ -2,6 +2,10 @@
 
 Blog Tech es una plataforma de blogs moderna y rica en funcionalidades, diseñada para entusiastas de la tecnología. Proporciona una experiencia fluida para crear, gestionar y compartir artículos, tutoriales y actualizaciones sobre una variedad de temas relacionados con la tecnología.
 
+## Despliegue
+
+Puedes ver el proyecto desplegado en [https://leoshi-blogges.onrender.com/](https://leoshi-blogges.onrender.com/).
+
 ## Características Principales
 
 -   **Registro e Inicio de Sesión de Usuarios**: Regístrate e inicia sesión de forma segura para gestionar tu contenido.
