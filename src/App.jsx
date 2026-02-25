@@ -7,6 +7,7 @@ import PostDetailsPage from './pages/PostDetailsPage';
 import LoginPage from './pages/LoginPage';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 import PrivateRoute from './components/auth/PrivateRoute';
+import RegisterPage from './pages/RegisterPage'; // Importamos la nueva página
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/post/:id" element={<PostDetailsPage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route 
+            <Route path="/register" element={<RegisterPage />} /> {/* Añadimos la nueva ruta */}
+            <Route
               path="/admin"
               element={
                 <PrivateRoute>

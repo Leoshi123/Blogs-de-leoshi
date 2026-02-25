@@ -10,7 +10,7 @@ const HomePage = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-4xl font-bold text-center my-8">Bienvenido a Leoshi Blog</h1>
+      <h1 className="text-3xl sm:text-4xl font-bold text-center my-8">Bienvenido a Leoshi Blog</h1>
       <PostList posts={posts} />
     </div>
   );

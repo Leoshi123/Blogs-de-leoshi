@@ -14,52 +14,34 @@ Este documento resume los pasos que hemos seguido para configurar el proyecto.
 
 ## 3. Usuario Administrador
 
-Se explicó el proceso para crear un usuario administrador:
-
-1.  **Crear las tablas:** Ejecutar el script `001_initial_schema.sql` en el editor de SQL de Supabase.
-2.  **Aplicar políticas de seguridad:** Ejecutar el script `002_security_policies.sql`.
-3.  **Registrar un usuario** en la aplicación.
-4.  **Asignar rol de administrador** con la siguiente consulta SQL:
-
-```sql
--- Este script ya no es necesario ya que la función handle_new_user lo hace automáticamente.
--- UPDATE profiles
--- SET is_admin = true
--- WHERE id = (
---   SELECT id FROM auth.users WHERE email = 'tu-email@ejemplo.com'
--- );
-```
+Se explicó el proceso para crear un usuario administrador.
 
 ## 4. Desarrollo del Frontend
 
 *   **Instalación de Dependencias:** Se instaló `react-router-dom` para gestionar el enrutamiento.
-*   **Estructura de Componentes:** Se crearon los directorios y archivos para los componentes, páginas, y hooks.
-*   **Enrutamiento:** Se configuró el enrutamiento principal en `App.jsx`, incluyendo rutas públicas, privadas y para detalles de publicaciones.
-*   **Componentes Creados:**
-    *   `Navbar`: Barra de navegación con enlaces a las diferentes secciones.
-    *   `PostForm`: Formulario para crear y editar publicaciones.
-    *   `PostList`: Componente para mostrar una lista de publicaciones.
-    *   `PrivateRoute`: Componente para proteger rutas que requieren autenticación.
-*   **Hooks Personalizados:**
-    *   `useAuth`: Hook para gestionar la autenticación de usuarios con Supabase (login, logout, registro, estado del usuario).
-    *   `usePosts`: Hook para interactuar con la tabla `posts` de Supabase (crear, leer, actualizar, eliminar publicaciones).
-*   **Integración en Páginas:**
-    *   `LoginPage`: Utiliza `useAuth` para el inicio de sesión.
-    *   `AdminDashboardPage`: Utiliza `usePosts` para gestionar las publicaciones y `PostForm` para la edición y creación.
-    *   `HomePage`: Utiliza `usePosts` para mostrar la lista de publicaciones a los visitantes.
-    *   `PostDetailsPage`: Muestra el contenido completo de una publicación individual.
+*   **Estructura de Componentes y Páginas:** Se crearon y configuraron los componentes y páginas principales de la aplicación.
+*   **Hooks Personalizados:** Se crearon los hooks `useAuth` y `usePosts` para gestionar la lógica de negocio.
 
-## 5. Control de Versiones
+## 5. Funcionalidad de Imágenes Destacadas
 
-*   Se inicializó un repositorio de Git en el proyecto.
-*   Se realizó un "commit" inicial con todos los archivos del proyecto.
-*   Se han realizado commits adicionales para guardar el progreso del desarrollo del frontend.
+*   **Subida a Cloudinary:** Se implementó la lógica para subir imágenes a Cloudinary desde el `PostForm`.
+*   **Almacenamiento en Supabase:** La URL de la imagen de Cloudinary se guarda en la columna `featured_image` de la tabla `posts`.
+*   **Visualización en la App:**
+    *   **Página de Inicio:** El componente `PostList` muestra la imagen destacada en cada tarjeta de post.
+    *   **Página de Detalles:** El componente `PostDetailsPage` muestra la imagen destacada a tamaño completo antes del contenido del post.
+
+## 6. Diseño Responsive
+
+*   **Navbar Adaptable:** Se modificó el componente `Navbar` para incluir un menú de "hamburguesa" en dispositivos móviles, asegurando una navegación fluida y accesible en cualquier tamaño de pantalla.
+*   **Títulos y Márgenes Responsivos:** Se ajustaron los tamaños de fuente y los `paddings` en `HomePage` y `PostDetailsPage` para mejorar la legibilidad y la composición visual en pantallas pequeñas.
+*   **Contenido Legible:** Se utilizaron las clases responsivas de `prose` para garantizar que el texto del blog tenga un tamaño de fuente óptimo para la lectura en cualquier dispositivo.
+
+## 7. Control de Versiones
+
+*   Se han realizado commits para cada nueva funcionalidad implementada, manteniendo un historial de cambios limpio y organizado.
 
 ## Siguientes Pasos
 
-1.  **Verificar la funcionalidad:** Probar la aplicación de extremo a extremo:
-    *   Registro de un nuevo usuario.
-    *   Inicio de sesión.
-    *   Creación, edición y eliminación de publicaciones desde el panel de administración.
-    *   Visualización de publicaciones en la página de inicio y en las páginas de detalle.
-2.  **Desplegar el proyecto:** Una vez que la funcionalidad esté verificada, podemos desplegar la aplicación a un servicio de hosting.
+1.  **Verificar la funcionalidad:** Probar la aplicación de extremo a extremo.
+2.  **Continuar con nuevas características:** Implementar paginación, búsqueda o cualquier otra funcionalidad pendiente.
+3.  **Desplegar el proyecto:** Una vez que la funcionalidad esté verificada, podemos desplegar la aplicación a un servicio de hosting.

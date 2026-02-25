@@ -1,12 +1,30 @@
 import React, { useState } from 'react';
+import { uploadImage } from '../../lib/cloudinary';
 
 const PostForm = ({ post, onSubmit, onCancel }) => {
   const [title, setTitle] = useState(post ? post.title : '');
   const [content, setContent] = useState(post ? post.content : '');
+  const [image, setImage] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit({ title, content });
+    let featured_image = post ? post.featured_image : '';
+
+    if (image) {
+      setIsUploading(true);
+      try {
+        featured_image = await uploadImage(image);
+      } catch (error) {
+        alert('Error al subir la imagen. Por favor, inténtalo de nuevo.');
+        setIsUploading(false);
+        return;
+      } finally {
+        setIsUploading(false);
+      }
+    }
+
+    onSubmit({ title, content, featured_image });
   };
 
   return (
@@ -16,7 +34,7 @@ const PostForm = ({ post, onSubmit, onCancel }) => {
           Título
         </label>
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
           id="title"
           type="text"
           placeholder="Título de la Publicación"
@@ -25,12 +43,29 @@ const PostForm = ({ post, onSubmit, onCancel }) => {
           required
         />
       </div>
+
+      <div className="mb-4">
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="image">
+          Imagen Destacada
+        </label>
+        <input
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+          id="image"
+          type="file"
+          accept="image/*"
+          onChange={(e) => setImage(e.target.files[0])}
+        />
+        {post?.featured_image && !image && (
+          <img src={post.featured_image} alt="Imagen actual" className="w-32 h-32 mt-4 object-cover" />
+        )}
+      </div>
+
       <div className="mb-6">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="content">
           Contenido
         </label>
         <textarea
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-48"
+          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 h-48"
           id="content"
           placeholder="Escribe tu publicación aquí..."
           value={content}
@@ -38,16 +73,18 @@ const PostForm = ({ post, onSubmit, onCancel }) => {
           required
         />
       </div>
+
       <div className="flex items-center justify-between">
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           type="submit"
+          disabled={isUploading}
         >
-          {post ? 'Actualizar' : 'Crear'}
+          {isUploading ? 'Subiendo...' : (post ? 'Actualizar' : 'Crear')}
         </button>
         {onCancel && (
           <button
-            className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
             type="button"
             onClick={onCancel}
           >

@@ -8,12 +8,17 @@ Puedes ver el proyecto desplegado en [https://leoshi-blogges.onrender.com/](http
 
 ## Características Principales
 
--   **Registro e Inicio de Sesión de Usuarios**: Regístrate e inicia sesión de forma segura para gestionar tu contenido.
--   **Crear, Editar y Eliminar Publicaciones**: Un editor con todas las funciones para crear, modificar y eliminar tus publicaciones con facilidad.
--   **Soporte para Markdown**: Escribe tus artículos usando Markdown para obtener un contenido rico y bien estructurado.
--   **Rutas Protegidas**: Ciertas secciones y funcionalidades están reservadas para usuarios registrados.
--   **Gestión de Imágenes**: Sube y gestiona imágenes para tus publicaciones.
--   **Interfaz Fácil de Usar**: Un diseño intuitivo y adaptable para una experiencia de usuario excepcional en cualquier dispositivo.
+-   **Autenticación de Usuarios Completa**:
+    -   **Registro de nuevos usuarios**: Cualquier persona puede crear una cuenta para empezar a publicar.
+    -   **Inicio y Cierre de Sesión**: Sistema seguro para gestionar el acceso de los usuarios.
+    -   **Navegación Dinámica**: La barra de navegación se adapta, mostrando opciones de registro/inicio de sesión o de administración/cierre de sesión según el estado del usuario.
+-   **Gestión de Contenido (Solo para usuarios registrados)**:
+    -   **Panel de Administración**: Una ruta privada (`/admin`) donde los usuarios pueden crear, editar y eliminar sus publicaciones.
+    -   **Soporte para Markdown**: Escribe tus artículos usando Markdown para darles un formato enriquecido.
+    -   **Gestión de Imágenes**: Sube imágenes para tus publicaciones a través de Cloudinary.
+-   **Interfaz Moderna y Adaptable**:
+    -   Diseño intuitivo y fácil de usar, construido con **React** y **Tailwind CSS**.
+    -   Experiencia de usuario excepcional en cualquier dispositivo.
 
 ## Tecnologías Utilizadas
 
