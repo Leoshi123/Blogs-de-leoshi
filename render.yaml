@@ -2,6 +2,7 @@ services:
   - type: web
     name: leoshi-blogges
     runtime: static
+    rootDir: leoshi-blogges
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
     envVars:
