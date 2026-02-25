@@ -83,3 +83,36 @@ Ahora que el código está en GitHub, podemos desplegarlo en Render.
     *   Una vez que el despliegue termine, Render te proporcionará una URL pública (ej. `https://leoshi-blogges.onrender.com`). ¡Tu blog ya está en línea!
 
 El archivo `render.yaml` también incluye una regla de reescritura (`rewrite`) que asegura que las rutas de tu aplicación de página única (SPA) funcionen correctamente, por lo que no necesitas configurar nada más.
+
+## 3. Solución de Problemas de Despliegue
+
+Si encuentras errores durante el despliegue, aquí tienes algunas de las causas más comunes y cómo solucionarlas.
+
+### Error: `npm ERR! enoent ENOENT: no such file or directory, open '/opt/render/project/src/package.json'`
+
+Este es uno de los errores más frecuentes y se debe a una configuración incorrecta en Render.
+
+**Causa:**
+
+El error indica que Render está buscando el archivo `package.json` en el directorio `/src` de tu proyecto, pero no lo encuentra porque, en realidad, se encuentra en la raíz del proyecto (`leoshi-blogges`).
+
+Esto sucede cuando el **"Directorio Raíz" (Root Directory)** de tu servicio en Render está mal configurado.
+
+**Solución:**
+
+Para corregirlo, sigue estos pasos en la configuración de tu servicio en Render:
+
+1.  **Ve a tu Dashboard en Render** y selecciona tu servicio.
+2.  **Ve a la pestaña "Settings" (Configuración).**
+3.  **Ajusta el "Directorio Raíz" (Root Directory):**
+    *   Busca el campo **Root Directory**.
+    *   Asegúrate de que esté configurado como `leoshi-blogges`. Si tu repositorio solo contiene la carpeta `leoshi-blogges`, también puedes dejar este campo en blanco.
+    *   **No lo configures como `src` o `leoshi-blogges/src`.**
+4.  **Verifica los otros comandos:**
+    *   **Build Command:** Debe ser `npm install && npm run build`.
+    *   **Publish Directory:** Debe ser `leoshi-blogges/dist`.
+5.  **Guarda los cambios y redespliega:**
+    *   Guarda la nueva configuración. Render debería iniciar un nuevo despliegue automáticamente.
+
+Con estos ajustes, Render buscará el `package.json` en la ubicación correcta y el despliegue debería completarse sin problemas.
+
