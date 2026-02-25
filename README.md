@@ -1,16 +1,48 @@
-# React + Vite
+# Blog Tech
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Blog Tech es una plataforma de blogs moderna y rica en funcionalidades, diseñada para entusiastas de la tecnología. Proporciona una experiencia fluida para crear, gestionar y compartir artículos, tutoriales y actualizaciones sobre una variedad de temas relacionados con la tecnología.
 
-Currently, two official plugins are available:
+## Características Principales
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-   **Registro e Inicio de Sesión de Usuarios**: Regístrate e inicia sesión de forma segura para gestionar tu contenido.
+-   **Crear, Editar y Eliminar Publicaciones**: Un editor con todas las funciones para crear, modificar y eliminar tus publicaciones con facilidad.
+-   **Soporte para Markdown**: Escribe tus artículos usando Markdown para obtener un contenido rico y bien estructurado.
+-   **Rutas Protegidas**: Ciertas secciones y funcionalidades están reservadas para usuarios registrados.
+-   **Gestión de Imágenes**: Sube y gestiona imágenes para tus publicaciones.
+-   **Interfaz Fácil de Usar**: Un diseño intuitivo y adaptable para una experiencia de usuario excepcional en cualquier dispositivo.
 
-## React Compiler
+## Tecnologías Utilizadas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+-   **React**: Una biblioteca de JavaScript para construir interfaces de usuario.
+-   **Vite**: una herramienta de compilación rápida y ligera para el desarrollo web moderno.
+-   **Tailwind CSS**: Un framework de CSS de "utilidad primero" para crear diseños personalizados.
+-   **Supabase**: Una plataforma de código abierto para servicios de backend, incluyendo base de datos y autenticación.
+-   **Cloudinary**: Un servicio basado en la nube para la gestión de imágenes y vídeos.
 
-## Expanding the ESLint configuration
+## Cómo Empezar
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Para obtener una copia local y ponerla en marcha, sigue estos sencillos pasos.
+
+### Prerrequisitos
+
+-   Node.js instalado
+-   npm o tu gestor de paquetes favorito
+
+### Instalación
+
+1.  **Clona el repositorio**
+    ```sh
+    git clone https://github.com/leoshi-hm/leoshi-blogges.git
+    ```
+2.  **Instala los paquetes de NPM**
+    ```sh
+    npm install
+    ```
+3.  **Configura las variables de entorno**
+    Crea un archivo `.env` en la raíz del proyecto y añade las variables de entorno necesarias para Supabase y Cloudinary.
+4.  **Ejecuta el proyecto**
+    ```sh
+    npm run dev
+    ```
+
+Esto iniciará el servidor de desarrollo y podrás ver el proyecto en tu navegador en `http://localhost:5173`.
